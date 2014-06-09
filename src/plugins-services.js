@@ -1,6 +1,15 @@
+'use strict';
+
 angular.module('phonegular.plugins.services')
 // 1. We probably want arguments to be 1-1 with the plugin methods
 // 2. We don't want this to require rewrite on phonegap change, so not sure about #1.
+
+/**
+ * https://github.com/apache/cordova-plugin-dialogs/blob/master/doc/index.md
+ */
+.run(function dialogs() {
+	if (notification.alert) window.alert = notification.alert;
+})
 
 /**
  * Battery Status
@@ -158,6 +167,10 @@ angular.module('phonegular.plugins.services')
 	this.clearWatch = function(watchID) {
 		navigator.compass.clearWatch(watchID);
 	};
+}])
+
+.service('notification', ['$q', '$timeout' , function notification($q, $timeout){
+	
 }])
 
 // TODO: Complete
