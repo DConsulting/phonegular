@@ -145,14 +145,14 @@ angular.module('phonegular.plugins.services')
  * https://github.com/apache/cordova-plugin-device-orientation/blob/master/doc/index.md
  */
 .service('compass', [function compass(){
-	this.getCurrentHeading = function() {
+	this.getCurrentHeading = function getCurrentHeading() {
 		var def = $q.defer();
 
 		navigator.accelerometer.getCurrentAcceleration(def.resolve, def.reject);
 		return def.promise;
 	};
 
-	this.watchHeading = function(compassSuccess, compasError, compassOptions) {
+	this.watchHeading = function watchHeading(compassSuccess, compasError, compassOptions) {
 		var onSuccess = function() {
 			$timeout(compassSuccess);
 		};
@@ -164,13 +164,96 @@ angular.module('phonegular.plugins.services')
 		return navigator.compass.watchHeading(onSuccess, onFail, compassOptions);
 	};
 
-	this.clearWatch = function(watchID) {
+	this.clearWatch = function clearWatch(watchID) {
 		navigator.compass.clearWatch(watchID);
 	};
 }])
 
-.service('notification', ['$q', '$timeout' , function notification($q, $timeout){
-	
+/**
+ * https://github.com/apache/cordova-plugin-dialogs/blob/master/doc/index.md
+ */
+.service('notification', ['$q', '$timeout' , function notification($q, $timeout) {
+	this.alert = function alert(message, title, buttonName) {
+		var def = $q.defer();
+
+		if (navigator.notification) {
+			navigator.notification.alert(message, function() {
+				$timeout(def.resolve);
+			}, title, buttonName);
+		}
+		else {
+			window.alert(message);
+			def.resolve();
+		}
+
+		return def.promise;
+	};
+
+	this.confirm = function confirm(message, title, buttonLabels) {
+		var def = $q.defer();
+
+		if (navigator.notification) {
+			navigator.notification.confirm(message, function() {
+				$timeout(def.resolve);
+			}, title, buttonLabels);
+		}
+		else {
+			var confirmResult = window.confirm(message);
+			def.resolve(confirmResult ? 1 : 2);
+		}
+
+		return def.promise;
+	};
+
+	this.prompt = function prompt(message, title, buttonLabels, defaultText) {
+		var def = $q.defer();
+
+		if (navigator.notification) {
+			navigator.notification.prompt(message, function() {
+				$timeout(def.resolve);
+			}, title, buttonLabels, defaultText);
+		}
+		else {
+			var enteredVvalue = window.prompt(message, defaultText)
+
+			def.resolve(enteredVvalue);
+		}
+
+		return def.promise;
+	};
+
+	this.beep = function beep(times) {
+		navigator.notification.beep(times);
+	}
 }])
+
+/**
+ * https://github.com/apache/cordova-plugin-geolocation/blob/master/doc/index.md
+ */
+ .service('geolocation', [function geolocation(){
+	this.getCurrentPosition = function getCurrentPosition(geolocationOptions) {
+		var def = $q.defer();
+
+		navigator.accelerometer.getCurrentAcceleration(def.resolve, def.reject, geolocationOptions);
+		return def.promise;
+	};
+
+	this.watchPosition = function watchPosition(geolocationSuccess, geolocationError, geolocationOptions) {
+		var onSuccess = function() {
+			$timeout(geolocationSuccess);
+		};
+
+		var onFail = function() {
+			$timeout(geolocationError);
+		};
+
+		return navigator.compass.watchPosition(onSuccess, onFail, geolocationOptions);
+	};
+
+	this.clearWatch = function clearWatch(watchID) {
+		navigator.compass.clearWatch(watchID);
+	};
+}])
+
 
 // TODO: Complete

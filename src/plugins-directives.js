@@ -23,10 +23,10 @@ angular.module('phonegular.plugins.directives')
 
 			function watchAcceleration() {
 				if (watchId != null) {
-					compass.clearWatch(watchId);
+					accelerometer.clearWatch(watchId);
 				}
 
-				watchId = compass.watchAcceleration(onSuccess, onError, accelerometerOptions);
+				watchId = accelerometer.watchAcceleration(onSuccess, onError, accelerometerOptions);
 			}
 
 			if ('frequence' in iAttrs) {
@@ -115,6 +115,46 @@ angular.module('phonegular.plugins.directives')
 			scope.$on('$destroy', function() {
 				if (watchId  != null) {
 					compass.clearWatch(watchId);
+				}
+			});
+		}
+	}
+}])
+
+.directive('pgGeolocation', ['geolocation', function pgGeolocation(geolocation) {
+	return {
+		translude: 'element',
+		restrict: 'EC',
+		link: function postLink(scope, iElement, iAttrs) {
+			var watchId = null;
+
+			function onSuccess(acceleration) {
+				scope.$eval(iAttrs.onChange, {acceleration: acceleration});
+			}
+
+			function onError(errorObject) {
+				scope.$eval(iAttrs.onError, {error: errorObject});
+			}
+
+			function watchGeolocation(options) {
+				if (watchId != null) {
+					geolocation.clearWatch(watchId);
+				}
+
+				watchId = geolocation.watchAcceleration(onSuccess, onError, options);
+			}
+
+			$scope.$watch(iAttrs.options, function(value) {
+				if (value === undefined) {
+					watchGeolocation();
+				}
+
+				watchGeolocation(value);
+			});
+
+			scope.$on('$destroy', function() {
+				if (watchId  != null) {
+					geolocation.clearWatch(watchId);
 				}
 			});
 		}
