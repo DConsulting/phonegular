@@ -148,7 +148,7 @@ angular.module('phonegular.plugins.services')
 	this.getCurrentHeading = function getCurrentHeading() {
 		var def = $q.defer();
 
-		navigator.accelerometer.getCurrentAcceleration(def.resolve, def.reject);
+		navigator.compass.getCurrentAcceleration(def.resolve, def.reject);
 		return def.promise;
 	};
 
@@ -234,7 +234,7 @@ angular.module('phonegular.plugins.services')
 	this.getCurrentPosition = function getCurrentPosition(geolocationOptions) {
 		var def = $q.defer();
 
-		navigator.accelerometer.getCurrentAcceleration(def.resolve, def.reject, geolocationOptions);
+		navigator.geolocation.getCurrentPosition(def.resolve, def.reject, geolocationOptions);
 		return def.promise;
 	};
 
@@ -247,13 +247,88 @@ angular.module('phonegular.plugins.services')
 			$timeout(geolocationError);
 		};
 
-		return navigator.compass.watchPosition(onSuccess, onFail, geolocationOptions);
+		return navigator.geolocation.watchPosition(onSuccess, onFail, geolocationOptions);
 	};
 
 	this.clearWatch = function clearWatch(watchID) {
-		navigator.compass.clearWatch(watchID);
+		navigator.geolocation.clearWatch(watchID);
 	};
 }])
+
+ .service('globalization', ['$timeout', function globalization($timeout){
+ 	this.getPreferredLanguage = function getPreferredLanguage() {
+ 		var def = $q.defer();
+ 		navigator.globalization.getPreferredLanguage(def.resolve, def.reject);
+ 		return def.promise;
+ 	};
+
+	this.getLocaleName = function getLocaleName() {
+		var def = $q.defer();
+		navigator.globalization.getLocaleName(def.resolve, def.reject);
+		return def.promise;
+	};
+
+	this.dateToString = function dateToString(date, options) {
+		var def = $q.defer();
+		navigator.globalization.dateToString(date, def.resolve, def.reject, options);
+		return def.promise;
+	};
+
+	this.getCurrencyPattern = function getCurrencyPattern(currencyCode) {
+		var def = $q.defer();
+		navigator.globalization.getCurrencyPattern(currencyCode, def.resolve, def.reject);
+		return def.promise;
+	};
+
+
+	this.getDateNames = function getDateNames(options) {
+		var def = $q.defer();
+		navigator.globalization.getDateNames(def.resolve, def.reject, options);
+		return def.promise;
+	};
+
+	this.getDatePattern = function getDatePattern(options) {
+		var def = $q.defer();
+		navigator.globalization.getDatePattern(def.resolve, def.reject, options);
+		return def.promise;
+	};
+
+	this.getFirstDayOfWeek = function getFirstDayOfWeek() {
+		var def = $q.defer();
+		navigator.globalization.getFirstDayOfWeek(def.resolve, def.reject);
+		return def.promise;
+	};
+
+	this.getNumberPattern = function getNumberPattern(options) {
+		var def = $q.defer();
+		navigator.globalization.getNumberPattern(def.resolve, def.reject, options);
+		return def.promise;
+	};
+
+	this.isDayLightSavingsTime= function isDayLightSavingsTime(date) {
+		var def = $q.defer();
+		navigator.globalization.isDayLightSavingsTime(date, def.resolve, def.reject);
+		return def.promise;
+	};
+
+	this.numberToString= function numberToString(number, options) {
+		var def = $q.defer();
+		navigator.globalization.numberToString(number, def.resolve, def.reject, options);
+		return def.promise;
+	};
+
+	this.stringToDate= function stringToDate(dateString, options) {
+		var def = $q.defer();
+		navigator.globalization.stringToDate(dateString, def.resolve, def.reject, options);
+		return def.promise;
+	};
+
+	this.stringToNumber= function stringToNumber(string, options) {
+		var def = $q.defer();
+		navigator.globalization.stringToNumber(string, def.resolve, def.reject, options);
+		return def.promise;
+	};
+ }]);
 
 
 // TODO: Complete
