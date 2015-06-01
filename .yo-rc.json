@@ -1,0 +1,28 @@
+{
+  "generator-angularjs-library": {
+    "props": {
+      "author": {
+        "name": "D-Consult",
+        "email": "angel.vladov@d-consult.net"
+      },
+      "libraryName": {
+        "original": "phonegular",
+        "camelized": "phonegular",
+        "dasherized": "phonegular",
+        "slugified": "phonegular",
+        "parts": [
+          "phonegular"
+        ]
+      },
+      "includeModuleDirectives": true,
+      "includeModuleFilters": true,
+      "includeModuleServices": true,
+      "includeAngularModuleResource": false,
+      "includeAngularModuleCookies": false,
+      "includeAngularModuleSanitize": false,
+      "librarySrcDirectory": "src/phonegular",
+      "libraryUnitTestDirectory": "test/unit/phonegular",
+      "libraryUnitE2eDirectory": "test/e2e/phonegular"
+    }
+  }
+}
