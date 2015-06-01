@@ -41,6 +41,14 @@ gulp.task('build', function() {
     .pipe(uglify())
     .pipe(rename('phonegular.min.js'))
     .pipe(gulp.dest('./dist'));
+
+	gulp.src(sourceFiles)
+		.pipe(plumber())
+		.pipe(concat('phonegular.js'))
+		.pipe(gulp.dest('./cordova-test/www/lib/phonegular'))
+		.pipe(uglify())
+		.pipe(rename('phonegular.min.js'))
+		.pipe(gulp.dest('./cordova-test/www/lib/phonegular'));
 });
 
 /**
