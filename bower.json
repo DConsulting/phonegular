@@ -21,6 +21,8 @@
     "angular-mocks": ">=1.2.0",
     "angular-scenario": ">=1.2.0",
     "angular": ">=1.2.0",
-    "angular-touch": ">=1.2.0"
+    "angular-touch": ">=1.2.0",
+    "hammerjs": ">=2.0.0",
+    "angular-material": "~0.9.6"
   }
 }

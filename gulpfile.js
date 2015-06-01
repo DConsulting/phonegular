@@ -20,9 +20,24 @@ var sourceDirectory = path.join(rootDirectory, './src');
 var cordovaTest = {
 	libPath: './cordova-test/www/lib',
 	libs: [
+		{
+			lib: 'angular',
+			src: [
+				'./bower_components/angular/angular.js',
+				'./bower_components/angular-touch/angular-touch.js',
+				'./bower_components/angular-animate/angular-animate.js',
+				'./bower_components/angular-aria/angular-aria.js'
+			]
+		},
 		'./dist/phonegular.js',
-		'./bower_components/angular/angular.js',
-		'./bower_components/angular-touch/angular-touch.js',
+		'./bower_components/hammerjs/hammer.js',
+		{
+			lib: 'angular-material',
+			src: [
+				'./bower_components/angular-material/angular-material.js',
+				'./bower_components/angular-material/angular-material.css'
+			]
+		}
 	]
 };
 
@@ -54,8 +69,24 @@ gulp.task('build', function () {
 });
 
 gulp.task('prepare-cordova-test', function () {
-	gulp.src(cordovaTest.libs)
-		.pipe(gulp.dest(cordovaTest.libPath));
+	cordovaTest.libs.forEach(function(libData) {
+		switch (typeof libData) {
+			case 'string':
+				gulp.src(libData)
+					.pipe(gulp.dest(cordovaTest.libPath));
+
+				break;
+
+			case 'object':
+				gulp.src(libData.src)
+					.pipe(gulp.dest(cordovaTest.libPath + '/' + libData.lib));
+
+				break;
+
+			default:
+				throw 'Unknown library format.';
+		}
+	});
 });
 
 /**
