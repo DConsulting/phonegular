@@ -2,10 +2,26 @@
     -webkit-tap-highlight-color: rgba(0,0,0,0); /* make transparent link selection, adjust last value opacity 0 to 1.0 */
 }
 
+html, body {
+	font-size: 62.5%;
+	line-height: 1.4;
+}
+
 body {
     -webkit-touch-callout: none;
     -webkit-text-size-adjust: none;
     -webkit-user-select: none;
+
+	font-size: 1.6rem;
+	line-height: 1.4;
+}
+
+p {
+	font-size: 1.6rem;
+	font-weight: 400;
+	letter-spacing: 0.010em;
+	line-height: 1.6em;
+	margin: 0.8em 0 1.6em;
 }
 
 .md-whiteframe-glow-z1 {
@@ -27,7 +43,26 @@ body {
 	width: auto;
 }
 
-
 .app-toolbar-tools .md-button md-icon {
 	color: #666 !important;
 }
+
+
+.app-demo .demo-container {
+	border-radius: 4px;
+	margin-bottom: 16px;
+	-webkit-transition: 0.02s padding cubic-bezier(0.35, 0, 0.25, 1);
+	transition: 0.02s padding cubic-bezier(0.35, 0, 0.25, 1);
+	position: relative;
+	padding-bottom: 0;
+}
+
+.app-demo .demo-description p {
+	margin-top: 0;
+}
+
+.app-demo md-toolbar.demo-toolbar {
+	border-radius: 3px 3px 0 0;
+	box-shadow: 0 1px rgba(255, 255, 255, 0.1);
+}
+

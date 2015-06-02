@@ -25,7 +25,7 @@ angular.module('phonegularTest.controllers', [
 	}])
 
 	.controller('NavigationCtrl', ['$scope', '$mdSidenav', function($scope,  $mdSidenav) {
-		$scope.close = function () {
+		this.close = function () {
 			$mdSidenav('left').close();
 		};
 	}]);
