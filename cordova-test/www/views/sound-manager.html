@@ -11,11 +11,41 @@
 				</div>
 			</md-toolbar>
 
-			<md-content layout-padding>
-				<p>TETSTE</p>
-				<p>TETSTE</p>
-				<p>TETSTE</p>
-				<p>TETSTE</p>
+			<md-content layout-padding class="md-padding">
+				<h2 class="md-title">Complex Audio</h2>
+				<p>Soem text here.</p>
+
+				<section layout="row" layout-sm="column" layout-wrap layout-align="center center" class="demo-section">
+
+					<div flex="100">
+						<md-button class="md-raised">Preload</md-button>
+						<md-button class="md-raised md-primary">Play</md-button>
+						<md-button class="md-raised md-warn">Stop</md-button>
+						<md-button class="md-raised md-warn">Unload</md-button>
+					</div>
+
+					<md-checkbox ng-model="data.cb1" aria-label="Checkbox 1">
+						Loop
+					</md-checkbox>
+
+					<div class="label">Complex Audio</div>
+				</section>
+
+				<br>
+				<h2 class="md-title">FX Audio</h2>
+				<p>Soem text here.</p>
+
+				<section layout="row" layout-sm="column" layout-wrap layout-align="center center" class="demo-section">
+
+					<div flex="100">
+						<md-button class="md-raised">Preload</md-button>
+						<md-button class="md-raised md-primary">Play</md-button>
+						<md-button class="md-raised md-warn">Stop</md-button>
+						<md-button class="md-raised md-warn">Unload</md-button>
+					</div>
+
+					<div class="label">FX Sound</div>
+				</section>
 			</md-content>
 		</div>
 	</div>

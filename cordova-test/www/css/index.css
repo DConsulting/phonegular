@@ -66,3 +66,25 @@ p {
 	box-shadow: 0 1px rgba(255, 255, 255, 0.1);
 }
 
+.app-demo .demo-section {
+	background: #f7f7f7;
+	border-radius: 3px;
+	text-align: center;
+	margin: 1em;
+	position: relative !important;
+	padding-bottom: 16px;
+}
+
+.app-demo .demo-section .label {
+	position: absolute;
+	bottom: 5px;
+	left: 7px;
+	font-size: 14px;
+	opacity: 0.54;
+}
+
+.app-demo .demo-section .md-button {
+	margin-top: 16px;
+	margin-bottom: 10px;
+}
+
