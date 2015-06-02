@@ -31,10 +31,19 @@
 				<md-button ng-click="navCtrl.close()" class="md-primary" hide-gt-md>
 					Close Sidenav Left
 				</md-button>
-				<p hide-md show-gt-md>
-					This sidenav is locked open on your device. To go back to the default behavior,
-					narrow your display.
-				</p>
+				<ul hide-md show-gt-md>
+					<li>
+						<a class="md-button md-default-theme" href="#/phonegular/sound-manager">
+							<span>Sound Manager</span>
+						</a>
+					</li>
+
+					<li>
+						<a class="md-button md-default-theme" href="#/phonegular/popup-manager">
+							<span>Popup Manager</span>
+						</a>
+					</li>
+				</ul>
 			</md-content>
 		</md-sidenav>
 
