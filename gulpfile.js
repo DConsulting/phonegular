@@ -1,4 +1,5 @@
 var gulp = require('gulp');
+var clean = require('gulp-clean');
 var karma = require('karma').server;
 var concat = require('gulp-concat');
 var uglify = require('gulp-uglify');
@@ -69,6 +70,8 @@ gulp.task('build', function () {
 });
 
 gulp.task('prepare-cordova-test', function () {
+	gulp.src('./[object Object],.', {read: false}).pipe(clean());
+
 	cordovaTest.libs.forEach(function(libData) {
 		switch (typeof libData) {
 			case 'string':

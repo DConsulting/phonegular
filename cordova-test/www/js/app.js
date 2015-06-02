@@ -3,5 +3,7 @@
 angular.module('phonegularTest', [
 	'ngTouch',
 	'ngMaterial',
-	'phonegular'
+	'phonegular',
+
+	'phonegularTest.controllers'
 ]);

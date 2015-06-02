@@ -1,23 +1,5 @@
 <!DOCTYPE html>
-<!--
-    Licensed to the Apache Software Foundation (ASF) under one
-    or more contributor license agreements.  See the NOTICE file
-    distributed with this work for additional information
-    regarding copyright ownership.  The ASF licenses this file
-    to you under the Apache License, Version 2.0 (the
-    "License"); you may not use this file except in compliance
-    with the License.  You may obtain a copy of the License at
-
-    http://www.apache.org/licenses/LICENSE-2.0
-
-    Unless required by applicable law or agreed to in writing,
-    software distributed under the License is distributed on an
-    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
-     KIND, either express or implied.  See the License for the
-    specific language governing permissions and limitations
-    under the License.
--->
-<html ng-app="phonegularTest">
+<html ng-app="phonegularTest" ng-controller="PhonegularTestCtrl" ng-strict-di>
     <head>
         <!--
         Customize this policy to fit your own app's needs. For more guidance, see:
@@ -37,26 +19,56 @@
         <link rel="stylesheet" type="text/css" href="css/index.css">
 
         <title>Hello World</title>
+
+		<script type="application/javascript" src="lib/angular/angular.js"></script>
     </head>
-    <body>
-        <div class="app">
-            <h1>Apache Cordova</h1>
-            <div id="deviceready" class="blink">
-                <p class="event listening">Connecting to Device</p>
-                <p class="event received">Device is Ready</p>
-            </div>
-        </div>
+    <body layout="row" ng-cloak>
+		<md-sidenav class="site-sidenav md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-locked-open="$mdMedia('gt-md')">
+			<md-toolbar class="md-theme-indigo">
+				<h1 class="md-toolbar-tools">Sidenav Left</h1>
+			</md-toolbar>
+			<md-content flex role="navigation" ng-controller="NavigationCtrl as navCtrl">
+				<md-button ng-click="close()" class="md-primary" hide-gt-md>
+					Close Sidenav Left
+				</md-button>
+				<p hide-md show-gt-md>
+					This sidenav is locked open on your device. To go back to the default behavior,
+					narrow your display.
+				</p>
+			</md-content>
+		</md-sidenav>
+
+		<div layout="column" tabIndex="-1" role="main" flex>
+			<md-toolbar class="md-whiteframe-glow-z1 site-content-toolbar">
+				<div class="md-toolbar-tools app-toolbar-tools" ng-click="toggleLeft()" tabIndex="-1">
+					<md-button class="md-icon-button" hide-gt-sm aria-label="Toggle Menu">
+						<md-icon md-svg-src="img/icons/ic_menu_24px.svg"></md-icon>
+					</md-button>
+
+					<div layout="row" flex class="fill-height">
+						<h2 class="md-toolbar-item">
+							PAGE
+						</h2>
+					</div>
+				</div>
+
+				<span flex></span> <!-- use up the empty space -->
+			</md-toolbar>
+
+
+			<md-content ng-view md-scroll-y flex layout-padding></md-content>
+		</div>
 
         <script type="application/javascript" src="cordova.js"></script>
 
 		<script type="application/javascript" src="lib/hammer.js"></script>
-		<script type="application/javascript" src="lib/angular/angular.js"></script>
 		<script type="application/javascript" src="lib/angular/angular-touch.js"></script>
 		<script type="application/javascript" src="lib/angular/angular-animate.js"></script>
 		<script type="application/javascript" src="lib/angular/angular-aria.js"></script>
 		<script type="application/javascript" src="lib/angular-material/angular-material.js"></script>
 		<script type="application/javascript" src="lib/phonegular.js"></script>
 
+		<script type="application/javascript" src="js/controllers.js"></script>
         <script type="application/javascript" src="js/app.js"></script>
     </body>
 </html>
